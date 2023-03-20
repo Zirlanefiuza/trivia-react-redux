@@ -27,9 +27,9 @@ class Login extends Component {
   };
 
   validateEmail = () => {
-    const { email } = this.state;
+    const { email, name } = this.state;
     const re = /\S+@\S+\.\S+/;
-    return re.test(email);
+    return re.test(email) && name;
   };
   // validateEmail refatorada em grupo função faz validação de email
 
