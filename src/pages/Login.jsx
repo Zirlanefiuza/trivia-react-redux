@@ -18,7 +18,8 @@ class Login extends Component {
     this.setState({ email: event.target.value });
   };
 
-  handlePlayClick = () => {
+  handlePlayClick = (event) => {
+    event.preventDefaul();
     const { name, email } = this.state;
     const { handleSetPlayerInfo, history } = this.props;
     handleSetPlayerInfo({ name, email });
@@ -57,6 +58,7 @@ class Login extends Component {
             onClick={ this.handlePlayClick }
             disabled={ this.enableButton() }
             data-testid="btn-play"
+            type="submit"
           >
             Play
           </button>
