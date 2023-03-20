@@ -7,3 +7,16 @@ export const setPlayerInfo = (name, email) => ({
     email,
   },
 });
+
+export const REQUEST_TOKEN = 'REQUEST_TOKEN';
+export const requestToken = (token) => ({
+  type: REQUEST_TOKEN,
+  payload: token,
+});
+
+export const fetchToken = () => (dispatch) => {
+  const url = 'https://opentdb.com/api_token.php?command=request';
+  fetch(url)
+    .then((response) => response.json())
+    .then((token) => dispatch(requestToken(token)));
+};
