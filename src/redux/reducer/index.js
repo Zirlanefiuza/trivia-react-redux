@@ -1,6 +1,9 @@
-import { SET_PLAYER_INFO } from '../actions/index';
+import { SET_PLAYER_INFO, REQUEST_TOKEN } from '../actions/index';
 
-const initialState = {};
+const initialState = {
+  player: '',
+  token: '',
+};
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -8,6 +11,11 @@ const rootReducer = (state = initialState, action) => {
     return {
       ...state,
       player: action.payload,
+    };
+  case REQUEST_TOKEN:
+    return {
+      ...state,
+      token: action.payload,
     };
   default:
     return state;
