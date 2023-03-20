@@ -30,7 +30,7 @@ class Login extends Component {
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
   };
-  // validateEmail refatorada em grupo
+  // validateEmail refatorada em grupo função faz validação de email
 
   enableButton = () => !(this.validateEmail());
 
