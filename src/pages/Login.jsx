@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setPlayerInfo } from '../redux/actions';
-import '../styles.css';
+import { fetchToken } from '../redux/actions';
+// import '../styles.css';
 
 class Login extends Component {
   state = {
@@ -19,10 +19,11 @@ class Login extends Component {
   };
 
   handlePlayClick = (event) => {
-    event.preventDefaul();
-    const { name, email } = this.state;
-    const { handleSetPlayerInfo, history } = this.props;
-    handleSetPlayerInfo({ name, email });
+    event.preventDefault();
+    const { history, dispatch } = this.props;
+    // handleSetPlayerInfo({ name, email });
+
+    dispatch(fetchToken());
     history.push('/game');
   };
 
@@ -58,7 +59,7 @@ class Login extends Component {
             onClick={ this.handlePlayClick }
             disabled={ this.enableButton() }
             data-testid="btn-play"
-            type="submit"
+            type="button"
           >
             Play
           </button>
@@ -68,15 +69,15 @@ class Login extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  handleSetPlayerInfo: (name, email) => dispatch(setPlayerInfo(name, email)),
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   handleSetPlayerInfo: (name, email) => dispatch(setPlayerInfo(name, email)),
+// });
 
 Login.propTypes = {
   handleSetPlayerInfo: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
-};
+}.isRequired;
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect()(Login);
