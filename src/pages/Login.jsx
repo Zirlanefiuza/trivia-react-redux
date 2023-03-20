@@ -25,14 +25,17 @@ class Login extends Component {
     history.push('/game');
   };
 
-  isPlayButtonDisabled = () => {
-    const { name, email } = this.state;
-    return name === '' || email === '' || !email.includes('@');
+  validateEmail = () => {
+    const { email } = this.state;
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
   };
+  // validateEmail refatorada em grupo
+
+  enableButton = () => !(this.validateEmail());
 
   render() {
     const { name, email } = this.state;
-
     return (
       <div className="login-box">
         <form className="login-container">
@@ -54,7 +57,7 @@ class Login extends Component {
           />
           <button
             onClick={ this.handlePlayClick }
-            disabled={ this.isPlayButtonDisabled() }
+            disabled={ this.enableButton() }
             data-testid="btn-play"
             className="login-btn"
           >
