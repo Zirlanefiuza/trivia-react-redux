@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setPlayerInfo } from '../redux/actions';
 import '../styles.css';
@@ -26,9 +27,9 @@ class Login extends Component {
   };
 
   validateEmail = () => {
-    const { email } = this.state;
+    const { email, name } = this.state;
     const re = /\S+@\S+\.\S+/;
-    return re.test(email);
+    return re.test(email) && name;
   };
   // validateEmail refatorada em grupo função faz validação de email
 
@@ -60,6 +61,14 @@ class Login extends Component {
           >
             Play
           </button>
+          <Link to="/settings">
+            <button
+              type="button"
+              data-testid="btn-settings"
+            >
+              Settings
+            </button>
+          </Link>
         </form>
       </div>
     );
