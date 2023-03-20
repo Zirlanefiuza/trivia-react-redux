@@ -30,22 +30,21 @@ class Login extends Component {
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
   };
-  // validateEmail refatorada em grupo
+  // validateEmail refatorada em grupo função faz validação de email
 
   enableButton = () => !(this.validateEmail());
 
   render() {
     const { name, email } = this.state;
     return (
-      <div className="login-box">
-        <form className="login-container">
+      <div>
+        <form>
           <input
             type="text"
             placeholder="Name"
             value={ name }
             onChange={ this.handleNameChange }
             data-testid="input-player-name"
-            className="login-input"
           />
           <input
             type="email"
@@ -53,13 +52,11 @@ class Login extends Component {
             value={ email }
             onChange={ this.handleEmailChange }
             data-testid="input-gravatar-email"
-            className="login-input"
           />
           <button
             onClick={ this.handlePlayClick }
             disabled={ this.enableButton() }
             data-testid="btn-play"
-            className="login-btn"
           >
             Play
           </button>
