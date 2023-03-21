@@ -54,6 +54,7 @@ class Login extends Component {
             />
           </label>
           <label htmlFor="email">
+            Email
             <input
               type="email"
               placeholder="Email"
@@ -68,6 +69,7 @@ class Login extends Component {
             disabled={ this.enableButton() }
             data-testid="btn-play"
             type="button"
+            name="Play"
           >
             Play
           </button>
@@ -75,6 +77,7 @@ class Login extends Component {
             <button
               type="button"
               data-testid="btn-settings"
+              name="settings"
             >
               Settings
             </button>
