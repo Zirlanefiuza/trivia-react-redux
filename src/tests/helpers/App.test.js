@@ -1,19 +1,26 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../../App';
-import { renderWithRouterAndRedux } from './renderWith';
+import renderWithRouterAndRedux from './renderWithRouterAndRedux';
 
 describe('Testa a tela de Login', ()=> {
     it('Testa se a aplicação é renderizada com sucesso e se o botao é  habilitado apos preenchimento dos inputs', () => {
-        const { history } = renderWithRouterAndRedux(<App></App>);
+        const { history } = renderWithRouterAndRedux(<App/>);
 
-        const nameInput = screen.getByText(/Nome/i);
+        const nameInput = screen.getByRole('');
         expect(nameInput).toBeInTheDocument();
 
         const emailInput = screen.getByText(/Email/i);
         expect(emailInput).toBeInTheDocument();
         userEvent.type(emailInput, 'test@test.com');
+
+        const settingsButton = screen.getByRole('button', {
+            name: 'Settings',
+          });
+          expect(enterButton).toBeInTheDocument();
+          userEvent.click(settingsButton);
+          expect(history.location.pathname).toBe('/settings');
         
         const playButton = screen.getByRole('button', {
             name: 'Play',
@@ -24,13 +31,8 @@ describe('Testa a tela de Login', ()=> {
           expect(history.location.pathname).toBe('/game');
       
     })
-    it('Testa se o botao settings existe e pra onde redireciona', () => {
-        const settingsButton = screen.getByRole('button', {
-            name: 'Settings',
-          });
-          expect(enterButton).toBeInTheDocument();
-          userEvent.click(settingsButton);
-          expect(history.location.pathname).toBe('/settings');
-    })
-    it('', () => {})
+    // it('Testa se o botao settings existe e pra onde redireciona', () => {
+       
+    // })
+    // it('', () => {})
 })
