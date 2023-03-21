@@ -13,6 +13,14 @@ export const requestToken = (token) => ({
   type: REQUEST_TOKEN,
   payload: token,
 });
+// action para score
+export const UPDATE_SCORE = 'UPDATE_SCORE';
+
+export const updateScore = (newScore) => ({
+  type: UPDATE_SCORE,
+  payload: newScore,
+});
+
 // funcao "fetchToken" que realiza a requisicao da api.
 // funcao "fetchToken" realizado com auxilio do Sumo
 export const fetchToken = () => async (dispatch) => {

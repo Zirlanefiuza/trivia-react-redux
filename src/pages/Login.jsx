@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchToken } from '../redux/actions';
+import { fetchToken, setPlayerInfo } from '../redux/actions';
 // import '../styles.css';
 
 class Login extends Component {
@@ -21,10 +21,11 @@ class Login extends Component {
 
   handlePlayClick = (event) => {
     event.preventDefault();
+    const { name, email } = this.state;
     const { history, dispatch } = this.props;
-    // handleSetPlayerInfo({ name, email });
 
     dispatch(fetchToken());
+    dispatch(setPlayerInfo(name, email));
     history.push('/game');
   };
 
