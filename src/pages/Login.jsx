@@ -42,25 +42,34 @@ class Login extends Component {
     return (
       <div>
         <form>
-          <input
-            type="text"
-            placeholder="Name"
-            value={ name }
-            onChange={ this.handleNameChange }
-            data-testid="input-player-name"
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={ email }
-            onChange={ this.handleEmailChange }
-            data-testid="input-gravatar-email"
-          />
+          <label htmlFor="name">
+            Name
+            <input
+              type="text"
+              placeholder="Name"
+              id="name"
+              value={ name }
+              onChange={ this.handleNameChange }
+              data-testid="input-player-name"
+            />
+          </label>
+          <label htmlFor="email">
+            Email
+            <input
+              type="email"
+              placeholder="Email"
+              value={ email }
+              id="email"
+              onChange={ this.handleEmailChange }
+              data-testid="input-gravatar-email"
+            />
+          </label>
           <button
             onClick={ this.handlePlayClick }
             disabled={ this.enableButton() }
             data-testid="btn-play"
             type="button"
+            name="Play"
           >
             Play
           </button>
@@ -68,6 +77,7 @@ class Login extends Component {
             <button
               type="button"
               data-testid="btn-settings"
+              name="settings"
             >
               Settings
             </button>
