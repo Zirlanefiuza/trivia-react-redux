@@ -19,14 +19,17 @@ class Login extends Component {
     this.setState({ email: event.target.value });
   };
 
-  handlePlayClick = (event) => {
+  handlePlayClick = async (event) => {
     event.preventDefault();
     const { name, email } = this.state;
-    const { history, dispatch } = this.props;
-
-    dispatch(fetchToken());
+    const { history, dispatch, token } = this.props;
     dispatch(setPlayerInfo(name, email));
+    // dispatch(fetchToken());
+    localStorage.setItem('token', await fetchToken()());
     history.push('/game');
+    console.log(token);
+    // if (token.length === 0) {
+    // }
   };
 
   validateEmail = () => {
@@ -89,8 +92,8 @@ class Login extends Component {
   }
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//   handleSetPlayerInfo: (name, email) => dispatch(setPlayerInfo(name, email)),
+// const mapStateToProps = (state) => ({
+//   token: state.token.token,
 // });
 
 Login.propTypes = {
