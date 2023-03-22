@@ -43,6 +43,7 @@ export const fetchToken = () => async (dispatch) => {
 //   };
 // };
 
+// Funções requestTrivia, requestTriviaSuccess, fetchQuestions e getTriviaQuestions -- Pedro
 const requestTrivia = () => ({
   type: REQUEST_TRIVIA,
 });
