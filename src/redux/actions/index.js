@@ -25,12 +25,11 @@ export const updateScore = (newScore) => ({
 
 // funcao "fetchToken" que realiza a requisicao da api.
 // funcao "fetchToken" realizado com auxilio do Sumo
-export const fetchToken = () => async (dispatch) => {
+export const fetchToken = () => async () => {
   const url = 'https://opentdb.com/api_token.php?command=request';
   const response = await fetch(url);
   const token = await response.json();
-  dispatch(requestToken(token));
-  localStorage.setItem('token', token.token);
+  return token.token;
 };
 
 // fetch game
@@ -62,7 +61,7 @@ export const fetchTrivia = async () => {
 };
 
 export const fetchQuestions = async (dispatch) => {
-  dispatch(requestTrivia);
+  // dispatch(requestTrivia());
   const getQuestions = await fetchTrivia();
   await dispatch(requestTriviaSuccess(getQuestions));
 };

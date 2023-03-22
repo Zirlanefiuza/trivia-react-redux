@@ -19,12 +19,13 @@ class Login extends Component {
     this.setState({ email: event.target.value });
   };
 
-  handlePlayClick = (event) => {
+  handlePlayClick = async (event) => {
     event.preventDefault();
     const { name, email } = this.state;
     const { history, dispatch, token } = this.props;
     dispatch(setPlayerInfo(name, email));
-    dispatch(fetchToken());
+    // dispatch(fetchToken());
+    localStorage.setItem('token', await fetchToken()());
     history.push('/game');
     console.log(token);
     // if (token.length === 0) {
