@@ -1,4 +1,8 @@
 export const SET_PLAYER_INFO = 'SET_PLAYER_INFO';
+export const REQUEST_TOKEN = 'REQUEST_TOKEN';
+export const UPDATE_SCORE = 'UPDATE_SCORE';
+export const REQUEST_TRIVIA = 'REQUEST_TRIVIA';
+export const REQUEST_TRIVIA_SUCCESS = 'REQUEST_TRIVIA_SUCCESS';
 
 export const setPlayerInfo = (name, email) => ({
   type: SET_PLAYER_INFO,
@@ -8,13 +12,11 @@ export const setPlayerInfo = (name, email) => ({
   },
 });
 
-export const REQUEST_TOKEN = 'REQUEST_TOKEN';
 export const requestToken = (token) => ({
   type: REQUEST_TOKEN,
   payload: token,
 });
 // action para score
-export const UPDATE_SCORE = 'UPDATE_SCORE';
 
 export const updateScore = (newScore) => ({
   type: UPDATE_SCORE,
@@ -32,29 +34,36 @@ export const fetchToken = () => async (dispatch) => {
 };
 
 // fetch game
-export const REQUEST_TRIVIA = 'REQUEST_TRIVIA';
-export const requestTrivia = () => async () => {
-  // const { history } = this.props;
-  const returnedByFetch = await fetchTrivia();
-  console.log(returnedByFetch)
-  return {
-    type: REQUEST_TRIVIA,
-    payload: returnedByFetch,
-  }
-  // if (returnedByFetch.response_code === 0) {
-  //   storage.removeItem('token')
-  //   // return <Redirect to="/" />
-  //   history.push('/')
-  //   return {
-  //     type: REQUEST_TRIVIA
-  //   }
-  // }
-}
+// export const requestTrivia = async () => {
+//   const returnedByFetch = await fetchTrivia();
+//   console.log(returnedByFetch);
+//   return {
+//     type: REQUEST_TRIVIA,
+//     payload: returnedByFetch,
+//   };
+// };
 
-export const fetchTrivia = async () =>  {
+const requestTrivia = () => ({
+  type: REQUEST_TRIVIA,
+});
+
+const requestTriviaSuccess = (questions) => ({
+  type: REQUEST_TRIVIA_SUCCESS,
+  payload: questions,
+});
+
+export const fetchTrivia = async () => {
   const tokenEndPoint = localStorage.getItem('token');
   const URL = `https://opentdb.com/api.php?amount=5&token=${tokenEndPoint}`;
   const response = await fetch(URL);
   const data = await response.json();
-  return data
-}
+  return data;
+};
+
+export const fetchQuestions = async (dispatch) => {
+  dispatch(requestTrivia);
+  const getQuestions = await fetchTrivia();
+  await dispatch(requestTriviaSuccess(getQuestions));
+};
+
+export const getTriviaQuestions = () => fetchQuestions;

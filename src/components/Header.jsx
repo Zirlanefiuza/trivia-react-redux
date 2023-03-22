@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
 import { connect } from 'react-redux';
-import { fetchTrivia } from '../redux/actions'
+// import { fetchTrivia } from '../redux/actions';
 
 class Header extends Component {
   // componentDidMount(){
