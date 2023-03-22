@@ -8,6 +8,9 @@ class Game extends Component {
       <div>
         <h1>Game</h1>
         <Header />
+        <button data-testid="btn-next">
+          Next
+        </button>
       </div>
     );
   }
