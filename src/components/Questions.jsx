@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class Questions extends React.Component {
+  state = {
+    shuffledQuestions: [],
+  };
+
   componentDidMount() {
-    const { trivia: { results }, question } = this.props;
-    console.log(results);
+    const { question } = this.props;
     const correctAnswer = { question: question.correct_answer,
       correct: true,
       dataTestId: 'correct-answer' };
@@ -14,14 +17,31 @@ class Questions extends React.Component {
     ));
     const arrayOfQuestions = [...wrongAnswer,
       correctAnswer];
-    console.log(arrayOfQuestions);
+    const randomizer = 0.5;
+    const shuffled = arrayOfQuestions.sort(() => Math.random() - randomizer);
+    this.setState({ shuffledQuestions: shuffled });
+    // lógica construída com Fernando Ferreira, Poliana Marques, Pedro Nascimento, Allex Thiago, Raphael Mocellin
   }
 
   render() {
     const { trivia } = this.props;
+    const { shuffledQuestions } = this.state;
+    // if (shuffledQuestions.lenght === 0 ) {
+    //   return <Loading />
+    // }
     return (
       <section data-testid="answer-options">
-        <p>{trivia.results[0].correct_answer}</p>
+        <p>{`cola: ${trivia.results[0].correct_answer}`}</p>
+        {
+          shuffledQuestions.map((question, index) => (
+            <button
+              data-testid={ question.dataTestId }
+              key={ index }
+            >
+              { question.question }
+            </button>
+          ))
+        }
       </section>
     );
   }
