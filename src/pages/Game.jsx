@@ -8,7 +8,6 @@ class Game extends Component {
       <div>
         <h1>Game</h1>
         <Header />
-        
       </div>
     );
   }
