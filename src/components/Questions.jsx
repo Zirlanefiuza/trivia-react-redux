@@ -1,19 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import '../Styles/answers.css';
 
 class Questions extends React.Component {
   state = {
     shuffledQuestions: [],
+    answers: false,
   };
 
   componentDidMount() {
     const { question } = this.props;
     const correctAnswer = { question: question.correct_answer,
       correct: true,
-      dataTestId: 'correct-answer' };
+      dataTestId: 'correct-answer',
+      className: 'correctAnswer' };
     const wrongAnswer = question.incorrect_answers.map((wrongQuestion, i) => (
-      { question: wrongQuestion, correct: false, dataTestId: `wrong-answer-${i}` }
+      {
+        question: wrongQuestion,
+        correct: false,
+        dataTestId: `wrong-answer-${i}`,
+        className: 'incorrectAnswers' }
     ));
     const arrayOfQuestions = [...wrongAnswer,
       correctAnswer];
@@ -23,9 +30,15 @@ class Questions extends React.Component {
     // lógica construída com Fernando Ferreira, Poliana Marques, Pedro Nascimento, Allex Thiago, Raphael Mocellin
   }
 
+  handleClick = () => {
+    this.setState({
+      answers: true,
+    });
+  };
+
   render() {
     const { trivia } = this.props;
-    const { shuffledQuestions } = this.state;
+    const { shuffledQuestions, answers } = this.state;
     // if (shuffledQuestions.lenght === 0 ) {
     //   return <Loading />
     // }
@@ -37,6 +50,8 @@ class Questions extends React.Component {
             <button
               data-testid={ question.dataTestId }
               key={ index }
+              onClick={ this.handleClick }
+              className={ answers && question.className }
             >
               { question.question }
             </button>
