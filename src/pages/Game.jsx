@@ -39,9 +39,6 @@ class Game extends Component {
       <div>
         <h1>Game</h1>
         <Header />
-        <button data-testid="btn-next">
-          Next
-        </button>
         {(trivia.results !== undefined && trivia.results.length !== 0) && (
           <div>
             <p
