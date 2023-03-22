@@ -57,6 +57,15 @@ class Questions extends React.Component {
             </button>
           ))
         }
+        {
+          answers && (
+            <button
+              data-testid="btn-next"
+            >
+              Next
+            </button>
+          )
+        }
       </section>
     );
   }
