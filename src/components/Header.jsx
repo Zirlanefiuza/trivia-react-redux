@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
 import { connect } from 'react-redux';
+// import { fetchTrivia } from '../redux/actions';
 
 class Header extends Component {
+  // componentDidMount(){
+  //   fetchTrivia()
+  // }
   render() {
     const { name, email } = this.props; // Obtém o nome e o placar do estado do Redux
-
     const hash = md5(email.toString());
     const gravatarUrl = `https://www.gravatar.com/avatar/${hash}`;
 
