@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
+import { requestTrivia } from '../redux/actions';
 
 class Game extends Component {
+  componentDidMount(){
+    const { dispatch } = this.props;
+    dispatch(requestTrivia())
+  }
   render() {
     return (
       <div>
@@ -12,5 +17,9 @@ class Game extends Component {
     );
   }
 }
+
+// const mapStateToProps = (globalState) => {
+//   token: 
+// }
 
 export default connect(null)(Game);
