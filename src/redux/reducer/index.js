@@ -3,7 +3,12 @@ import { SET_PLAYER_INFO,
   UPDATE_SCORE, REQUEST_TRIVIA_SUCCESS } from '../actions/index';
 
 const initialState = {
-  player: { name: '', email: '' },
+  player: {
+    name: '',
+    assertions: 0,
+    score: 0,
+    gravatarEmail: '',
+  },
   token: '',
   score: 0,
   trivia: {},
